@@ -4,6 +4,11 @@ type Weather = {
   icon: string;
 };
 
+type Coords = {
+  city: string;
+  state: string;
+}
+
 type WeatherList = [Weather];
 
 type HourlyForecast = {
