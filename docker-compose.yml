@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  client:
+    build: ./
+    volumes:
+      - ./src:/usr/src/app
+    tty: true
+    ports:
+      - 1234:1234

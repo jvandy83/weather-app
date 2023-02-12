@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
-
-import { setSubmitting } from "../redux/features/weatherData";
 
 import { TodaysWeather } from "./TodaysWeather";
 
@@ -12,13 +10,9 @@ import { WeatherSummary } from "./WeatherSummary";
 
 import { DailyWeather } from "./DailyWeather";
 
-import { saveFavoriteLocation } from "../useLocalStorage";
-
 export const MainWeatherData = () => {
-  const dispatch = useAppDispatch();
   const {
     forecastType,
-    submitting,
     weatherData,
     currentGeoLocation,
     weatherDataIsPresent,
@@ -49,16 +43,6 @@ export const MainWeatherData = () => {
       </div>
     );
   }
-
-  // if (submitting && currentGeoLocation?.city) {
-  //   setLocalStorageFavorites({
-  //     ...weatherData.current,
-  //     city: currentGeoLocation?.city,
-  //     state: currentGeoLocation?.state,
-  //     lat: weatherData.lat,
-  //     lon: weatherData.lon,
-  //   });
-  // }
 
   return (
     <>
