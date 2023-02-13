@@ -48,28 +48,30 @@ export const Nav = () => {
 		const currentFavoriteLocations = getLocalStorageFavorites();
 		if (currentFavoriteLocations) {
 			return currentFavoriteLocations?.map((location) => (
-				<button
-					onClick={() =>
-						handleFetchFavoriteLocation({
-							lat: location.lat,
-							lon: location.lon,
-						})
-					}
-					key={Math.random()}
-					className='border-r px-4 py-1 flex flex-1 justify-center'
-				>
-					<span className='pr-2 flex'>
-						<img
-							className='w-6'
-							src={`http://openweathermap.org/img/wn/${location?.weather[0].icon}@2x.png`}
-							alt=''
-						/>
-						{Math.round(location.temp)}°
-					</span>
-					<span>
-						{location.city}, {location.state}
-					</span>
-				</button>
+				<div className='flex w-full border-r last:border-r-0'>
+					<button
+						onClick={() =>
+							handleFetchFavoriteLocation({
+								lat: location.lat,
+								lon: location.lon,
+							})
+						}
+						key={Math.random()}
+						className='px-4 py-1 flex flex-1 justify-center'
+					>
+						<span className='pr-2 flex'>
+							<img
+								className='w-6'
+								src={`http://openweathermap.org/img/wn/${location?.weather[0].icon}@2x.png`}
+								alt=''
+							/>
+							{Math.round(location.temp)}°
+						</span>
+						<span>
+							{location.city}, {location.state}
+						</span>
+					</button>
+				</div>
 			));
 		}
 	};
