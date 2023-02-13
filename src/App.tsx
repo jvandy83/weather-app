@@ -49,6 +49,7 @@ export const App = () => {
 		const currentFavoriteLocation = getCurrentFavoriteLocation();
 
 		if (currentFavoriteLocation) {
+			console.log('***CURRENT_FAVORITE_LOCATION***: ', currentFavoriteLocation);
 			const { lat, lon } = currentFavoriteLocation;
 			dispatch(fetchWeatherData({ lat, lon, isExistingFavorite: true }));
 
@@ -63,6 +64,9 @@ export const App = () => {
 		if (favoriteLocations && !favoriteLocationSelected) {
 			console.log('calling api with last location');
 			const lastLocation = favoriteLocations[favoriteLocations.length - 1];
+			if (!lastLocation) {
+				return;
+			}
 			const { lat, lon } = lastLocation;
 
 			dispatch(fetchWeatherData({ lat, lon, isExistingFavorite: true }));

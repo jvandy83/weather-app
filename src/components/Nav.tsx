@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SearchForm } from './SearchForm';
 
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
@@ -15,14 +15,24 @@ import { renderBGColors, reverseGeocode } from '../utils';
 import {
 	getLocalStorageFavorites,
 	createCurrentFavoriteLocation,
+	deleteFavoriteLocation,
 } from '../useLocalStorage';
 
 export const Nav = () => {
+	const [showDropdown, setShowDropdown] = useState(false);
 	const { weatherData, forecastType } = useAppSelector(
 		(state) => state.weatherData,
 	);
 
 	const dispatch = useAppDispatch();
+
+	const handleShowDropdown = (e: React.MouseEvent) => {
+		setShowDropdown((prev) => !prev);
+	};
+
+	const handleRemoveFavoriteLocation = (id: string) => {
+		deleteFavoriteLocation(id);
+	};
 
 	const handleClickActiveNavButton = (
 		e: React.MouseEvent<HTMLButtonElement>,
@@ -48,7 +58,7 @@ export const Nav = () => {
 		const currentFavoriteLocations = getLocalStorageFavorites();
 		if (currentFavoriteLocations) {
 			return currentFavoriteLocations?.map((location) => (
-				<div className='flex w-full border-r last:border-r-0'>
+				<div className='relative flex w-full border-r last:border-r-0'>
 					<button
 						onClick={() =>
 							handleFetchFavoriteLocation({
@@ -62,7 +72,7 @@ export const Nav = () => {
 						<span className='pr-2 flex'>
 							<img
 								className='w-6'
-								src={`http://openweathermap.org/img/wn/${location?.weather[0].icon}@2x.png`}
+								src={`http://openweathermap.org/img/wn/${location.weather[0].icon}@2x.png`}
 								alt=''
 							/>
 							{Math.round(location.temp)}°
@@ -70,6 +80,15 @@ export const Nav = () => {
 						<span>
 							{location.city}, {location.state}
 						</span>
+					</button>
+					<button onClick={handleShowDropdown} className='pr-2 group'>
+						<span className='text-xl'>&#8942;</span>
+						<div
+							onClick={() => handleRemoveFavoriteLocation(location.id)}
+							className='absolute hidden group-focus:block top-10 right-0 bg-white border rounded px-6 py-2 text-red-500 text-xs '
+						>
+							delete
+						</div>
 					</button>
 				</div>
 			));

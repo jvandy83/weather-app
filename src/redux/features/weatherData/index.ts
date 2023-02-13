@@ -10,6 +10,7 @@ import { reverseGeocode } from '../../../utils';
 
 import axios from 'axios';
 import { saveFavoriteLocation } from '../../../useLocalStorage';
+import { stringify } from 'querystring';
 
 interface Response {
 	data: WeatherDataResponse;
@@ -30,6 +31,7 @@ const initialWeatherDataState: WeatherData = {
 				wind_speed: null,
 			},
 		],
+		id: '',
 		lat: '',
 		lon: '',
 		timezone: '',
@@ -71,7 +73,7 @@ export const fetchWeatherData = createAsyncThunk(
 				`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&&appid=38241639fbe56d2db69c48b225d3a7f7
 &units=imperial`,
 			);
-			const location = await reverseGeocode({ lat, lon });
+			const location: any = await reverseGeocode({ lat, lon });
 			if (!isExistingFavorite) {
 				saveFavoriteLocation({
 					...res.data.current,
