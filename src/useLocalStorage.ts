@@ -62,5 +62,5 @@ export const deleteFavoriteLocation = (id) => {
 		(favorites) => favorites.id !== id,
 	);
 	console.log(updatedFavorites);
-	localStorage.setItem('favorites', updatedFavorites);
+	localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 };
