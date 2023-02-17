@@ -14,6 +14,8 @@ import {
 	setCurrentGeoLocation,
 } from '../redux/features/weatherData';
 
+import { createCurrentFavoriteLocation } from '../useLocalStorage';
+
 export const SearchForm = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -52,6 +54,11 @@ export const SearchForm = () => {
 		dispatch(setSubmitting(true));
 		dispatch(fetchWeatherData(coordinates));
 		dispatch(setCurrentGeoLocation(location));
+		createCurrentFavoriteLocation({
+			...location,
+			...coordinates,
+			...weatherData?.current,
+		});
 		if (inputRef.current) {
 			inputRef.current.value = '';
 		}
