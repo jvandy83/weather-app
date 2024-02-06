@@ -2,11 +2,10 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://jvandy83.github.io/weather-app",
+  "homepage": "https://jvandy83.github.com/weather-app",
   "scripts": {
     "dev": "parcel ./src/index.html",
     "build": "parcel build src/index.html",
-    "build:github": "rm -rf dist/* && parcel build --public-url ./src dist",
     "clean": "rm -rf dist .cache",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
