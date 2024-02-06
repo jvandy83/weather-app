@@ -1,12 +1,12 @@
 {
-  "name": "timely-care-engineering-challenge",
+  "name": "weather-app",
   "version": "1.0.0",
   "description": "",
   "homepage": "https://jvandy83.github.io/weather-app",
   "scripts": {
     "dev": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html",
-    "build:github": "rm -rf dist/* && parcel build --public-url ./ dist",
+    "build": "parcel build src/index.html",
+    "build:github": "rm -rf dist/* && parcel build --public-url ./src dist",
     "clean": "rm -rf dist .cache",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
