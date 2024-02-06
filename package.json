@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "parcel ./src/index.html",
     "build": "parcel build ./src/index.html",
+    "build:github": "rm -rf dist/* && parcel build --public-url ./ dist",
     "clean": "rm -rf dist .cache",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
