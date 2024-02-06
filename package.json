@@ -2,7 +2,7 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://jvandy83.github.com/weather-app",
+  "homepage": "https://github.com/jvandy83/weather-app",
   "scripts": {
     "dev": "parcel ./src/index.html",
     "build": "parcel build src/index.html",
